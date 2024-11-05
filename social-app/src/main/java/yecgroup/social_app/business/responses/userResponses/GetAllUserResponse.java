@@ -16,7 +16,7 @@ public class GetAllUserResponse {
 	private int id;
 	private String email;
 	private String username;
-	
+	private String statusName;
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date createdAt;
 
