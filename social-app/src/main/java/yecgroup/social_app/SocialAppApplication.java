@@ -22,7 +22,7 @@ import yecgroup.social_app.core.exceptions.ValidationProblemDetail;
 public class SocialAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialAppApplication.class, args);
+		SpringApplication.run(SocialAppApplication.class, args);	
 	}
 	
 	@Bean

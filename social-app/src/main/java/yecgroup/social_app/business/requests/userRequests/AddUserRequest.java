@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import yecgroup.social_app.core.utilities.ProjectConstant;
+import yecgroup.social_app.core.utilities.UserValidationConstant;
 
 @Data
 @AllArgsConstructor
@@ -13,15 +15,15 @@ import lombok.NoArgsConstructor;
 public class AddUserRequest {
 	
 	
-	@Email(regexp = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$",message = "This is not a properly formatted email address.")
+	@Email(regexp = ProjectConstant.emailRegex,message = UserValidationConstant.emailMessage)
 	@NotBlank()
 	private String email;
 	
-	@Size(min=3, message = "Username's length should be more than 3 characters")
+	@Size(min=3, message = UserValidationConstant.usernameMessage)
 	@NotBlank()
 	private String username;
 	
-	@Size(min = 5,message = "Password's length should be more than 5 characters")
+	@Size(min = 5,message = UserValidationConstant.passwordMessage)
 	@NotBlank()
 	private String password;
 	
