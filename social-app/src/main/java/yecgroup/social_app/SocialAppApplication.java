@@ -1,6 +1,7 @@
 package yecgroup.social_app;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import yecgroup.social_app.core.exceptions.BusinessException;
 import yecgroup.social_app.core.exceptions.ProblemDetail;
 import yecgroup.social_app.core.exceptions.ValidationProblemDetail;
+import yecgroup.social_app.core.utilities.ExceptionMessageConstant;
 
 @SpringBootApplication
 @RestControllerAdvice
@@ -45,7 +47,7 @@ public class SocialAppApplication {
 		
 		ValidationProblemDetail validationDetail = new ValidationProblemDetail();
 		
-		validationDetail.setMessage("Validasyon hatası meydana geldi");
+		validationDetail.setMessage(ExceptionMessageConstant.validationErrorMessage);
 		
 		validationDetail.setProblems(new HashMap<String, String>());
 		
@@ -59,6 +61,16 @@ public class SocialAppApplication {
 		
 		return validationDetail;
 		
+	}
+	
+	@ExceptionHandler
+	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	public ProblemDetail noSuchElementException(NoSuchElementException noSuchElementException) {
+		
+		ProblemDetail problemDetail = new ProblemDetail();
+		problemDetail.setMessage(ExceptionMessageConstant.noSuchElementMessage);
+		
+		return problemDetail;
 		
 	}
 

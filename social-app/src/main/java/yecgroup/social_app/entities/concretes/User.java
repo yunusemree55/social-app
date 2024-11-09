@@ -1,5 +1,7 @@
 package yecgroup.social_app.entities.concretes;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -17,6 +19,7 @@ import yecgroup.social_app.core.entities.MyEntity;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper=false)
+@DynamicUpdate
 @Table(name = "users")
 public class User extends MyEntity{
 	

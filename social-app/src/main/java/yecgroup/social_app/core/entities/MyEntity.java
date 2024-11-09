@@ -23,8 +23,8 @@ public abstract class MyEntity {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "createdAt")
-	@CreationTimestamp
+	@Column(name = "createdAt",updatable = false)
+	@CreationTimestamp 
 	private LocalDateTime createdAt;
 	
 	@Column(name = "updatedAt")
@@ -32,8 +32,12 @@ public abstract class MyEntity {
 	private LocalDateTime updatedAt;
 	
 	@Column(name = "deletedAt")
-	@Nullable
-	private LocalDateTime deletedAt; 
+	@Nullable 
+	private LocalDateTime deletedAt;
+	
+	
+	
+	 
 	
 	
 
