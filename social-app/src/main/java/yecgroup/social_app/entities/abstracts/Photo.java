@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import yecgroup.social_app.core.entities.MyEntity;
+import yecgroup.social_app.entities.concretes.Post;
 import yecgroup.social_app.entities.concretes.ProfilePhoto;
 
 @Entity
@@ -25,5 +26,7 @@ public class Photo extends MyEntity{
 	@OneToOne(mappedBy = "photo")
 	private ProfilePhoto profilePhoto;
 
+	@OneToOne(mappedBy = "photo")
+	private Post post;
 }
 

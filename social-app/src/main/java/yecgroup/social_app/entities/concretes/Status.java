@@ -31,4 +31,7 @@ public class Status {
 	@OneToMany(mappedBy = "status")
 	private List<User> users;
 	
+	@OneToMany(mappedBy = "status")
+	private List<Post> posts;
+	
 }

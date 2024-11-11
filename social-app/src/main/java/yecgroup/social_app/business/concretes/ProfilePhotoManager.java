@@ -31,7 +31,7 @@ public class ProfilePhotoManager implements ProfilePhotoService {
 			
 			profilePhoto.setId(0);
 			profilePhoto.setPhoto(new Photo());
-			profilePhoto.getPhoto().setSrc(src);
+			profilePhoto.getPhoto().setSrc(src); 
 			
 			profilePhotoRepository.save(profilePhoto);
 		}
