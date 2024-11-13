@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import yecgroup.social_app.business.requests.userRequests.AddUserRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserEmailRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserUsernameRequest;
 import yecgroup.social_app.business.responses.userResponses.GetAllUserResponse;
+import yecgroup.social_app.business.responses.userResponses.GetUserResponse;
 
 @RestController
 @AllArgsConstructor
@@ -31,6 +33,12 @@ public class UsersController {
 	public List<GetAllUserResponse> getAll() {
 		
 		return userService.getAll();
+	}
+	
+	@GetMapping("/{id}")
+	public GetUserResponse getUserById(@PathVariable int id) {
+		
+		return userService.getUserById(id);
 	}
 	
 	@PostMapping("/add")

@@ -40,6 +40,12 @@ public class User extends MyEntity{
 	@OneToOne(mappedBy = "user")
 	private ProfilePhoto profilePhoto;
 	
+	@OneToMany(mappedBy = "followingUser")
+	private List<Follower> followers;
+	
+	@OneToMany(mappedBy = "followerUser")
+	private List<Follower> followings;
+	
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
 

@@ -10,6 +10,7 @@ import yecgroup.social_app.business.requests.userRequests.AddUserRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserEmailRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserUsernameRequest;
 import yecgroup.social_app.business.responses.userResponses.GetAllUserResponse;
+import yecgroup.social_app.business.responses.userResponses.GetUserResponse;
 import yecgroup.social_app.business.rules.userBusinessRules.BaseUserBusinessRules;
 import yecgroup.social_app.core.adapters.javaMailSender.userMail.UserMailSenderService;
 import yecgroup.social_app.core.utilities.mapper.modelMapper.ModelMapperService;
@@ -33,6 +34,18 @@ public class UserManager implements UserService {
 				.map(user -> modelMapperService.forResponse().map(user, GetAllUserResponse.class)).toList();
 		
 		return userResponseList;
+		
+	}
+	
+	@Override
+	public GetUserResponse getUserById(int id) {
+		
+		User target = userRepository.findById(id).orElseThrow();
+		
+		GetUserResponse userResponse = modelMapperService.forResponse().map(target, GetUserResponse.class);
+		userResponse.setId(target.getId());
+		
+		return userResponse;
 		
 	}
 
@@ -80,6 +93,8 @@ public class UserManager implements UserService {
 		
 	
 	}
+
+	
 		
 
 }
