@@ -40,6 +40,10 @@ public class User extends MyEntity{
 	@OneToOne(mappedBy = "user")
 	private ProfilePhoto profilePhoto;
 	
+	@ManyToOne()
+	@JoinColumn(name = "onlineStatusId")
+	private OnlineStatus onlineStatus;
+	
 	@OneToMany(mappedBy = "followingUser")
 	private List<Follower> followers;
 	

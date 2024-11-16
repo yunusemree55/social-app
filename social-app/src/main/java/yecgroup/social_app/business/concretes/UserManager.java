@@ -8,13 +8,16 @@ import lombok.AllArgsConstructor;
 import yecgroup.social_app.business.abstracts.UserService;
 import yecgroup.social_app.business.requests.userRequests.AddUserRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserEmailRequest;
+import yecgroup.social_app.business.requests.userRequests.UpdateUserPasswordRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserUsernameRequest;
 import yecgroup.social_app.business.responses.userResponses.GetAllUserResponse;
 import yecgroup.social_app.business.responses.userResponses.GetUserResponse;
 import yecgroup.social_app.business.rules.userBusinessRules.BaseUserBusinessRules;
 import yecgroup.social_app.core.adapters.javaMailSender.userMail.UserMailSenderService;
 import yecgroup.social_app.core.utilities.mapper.modelMapper.ModelMapperService;
+import yecgroup.social_app.core.utilities.springSecurityCrypto.PasswordEncoderService;
 import yecgroup.social_app.dataAccess.abstracts.UserRepository;
+import yecgroup.social_app.entities.concretes.OnlineStatus;
 import yecgroup.social_app.entities.concretes.Status;
 import yecgroup.social_app.entities.concretes.User;
 
@@ -26,6 +29,8 @@ public class UserManager implements UserService {
 	private ModelMapperService modelMapperService;
 	private BaseUserBusinessRules baseUserBusinessRules;
 	private UserMailSenderService userMailSenderService;
+	private PasswordEncoderService passwordEncoderService;
+
 
 	@Override
 	public List<GetAllUserResponse> getAll() {
@@ -44,9 +49,8 @@ public class UserManager implements UserService {
 		
 		GetUserResponse userResponse = modelMapperService.forResponse().map(target, GetUserResponse.class);
 		userResponse.setId(target.getId());
-		
-		return userResponse;
-		
+
+		return userResponse; 
 	}
 
 	@Override
@@ -60,8 +64,10 @@ public class UserManager implements UserService {
 		
 		
 		user.setStatus(new Status());
+		user.setOnlineStatus(new OnlineStatus());
 		user.getStatus().setId(1); 
-		
+		user.getOnlineStatus().setId(2);
+		user.setPassword(passwordEncoderService.encode(user.getPassword()));
 		
 		userRepository.save(user);
 		userMailSenderService.sendMailAccountCreatedToReceiver(user.getEmail());
@@ -88,13 +94,18 @@ public class UserManager implements UserService {
 
 		
 		userRepository.updateUsername(updateUserUsernameRequest.getId(), updateUserUsernameRequest.getUsername());
-		
-		
-		
 	
 	}
 
-	
+	@Override
+	public void updatePassword(UpdateUserPasswordRequest updateUserPasswordRequest) {
 		
+		baseUserBusinessRules.checkPasswordFields(updateUserPasswordRequest.getPassword(), updateUserPasswordRequest.getConfirmPassword());
+		
+		String encodedPassword = passwordEncoderService.encode(updateUserPasswordRequest.getPassword());
+		
+		userRepository.updatePassword(updateUserPasswordRequest.getId(), encodedPassword);
+		
+	}
 
 }

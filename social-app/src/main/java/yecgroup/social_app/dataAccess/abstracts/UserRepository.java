@@ -10,7 +10,9 @@ import yecgroup.social_app.entities.concretes.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	
-	boolean existsUserByEmail(String email);
+	User findByUsername(String username);
+	
+	boolean existsUserByEmail(String email); 
 	boolean existsUserByUsername(String username);
 	
 	@Modifying
@@ -22,5 +24,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional
 	@Query("UPDATE User u SET u.username = :username, u.updatedAt = CURRENT_TIMESTAMP WHERE u.id = :id")
 	void updateUsername(@Param(value = "id") int id,@Param(value = "username") String username);
+	
+	@Modifying
+	@Transactional
+	@Query("UPDATE User u SET u.password = :password, u.updatedAt = CURRENT_TIMESTAMP WHERE u.id = :id")
+	void updatePassword(@Param(value = "id") int id,@Param(value = "password") String password);
 }
  

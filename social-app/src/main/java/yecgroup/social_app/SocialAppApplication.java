@@ -3,10 +3,8 @@ package yecgroup.social_app;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -27,11 +25,6 @@ public class SocialAppApplication {
 		SpringApplication.run(SocialAppApplication.class, args);	
 	}
 	
-	@Bean
-	public ModelMapper modelMapper() {
-		
-		return new ModelMapper();
-	}
 	
 	@ExceptionHandler
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -73,5 +66,7 @@ public class SocialAppApplication {
 		return problemDetail;
 		
 	}
+	
+	
 
 }
