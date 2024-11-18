@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import yecgroup.social_app.business.abstracts.UserService;
 import yecgroup.social_app.business.requests.userRequests.AddUserRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserEmailRequest;
+import yecgroup.social_app.business.requests.userRequests.UpdateUserOnlineStatusRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserPasswordRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserUsernameRequest;
 import yecgroup.social_app.business.responses.userResponses.GetAllUserResponse;
@@ -66,6 +67,11 @@ public class UsersController {
 	public void updatePassword(UpdateUserPasswordRequest updateUserPasswordRequest) {
 		
 		userService.updatePassword(updateUserPasswordRequest);
+	}
+	
+	public void updateOnlineStatus(UpdateUserOnlineStatusRequest updateUserOnlineStatusRequest) {
+		
+		userService.updateOnlineStatus(updateUserOnlineStatusRequest);
 	}
 
 }

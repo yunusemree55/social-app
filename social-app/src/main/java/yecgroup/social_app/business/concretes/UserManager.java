@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import yecgroup.social_app.business.abstracts.UserService;
+import yecgroup.social_app.business.exceptions.authExceptions.UserNotFoundException;
 import yecgroup.social_app.business.requests.userRequests.AddUserRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserEmailRequest;
+import yecgroup.social_app.business.requests.userRequests.UpdateUserOnlineStatusRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserPasswordRequest;
 import yecgroup.social_app.business.requests.userRequests.UpdateUserUsernameRequest;
 import yecgroup.social_app.business.responses.userResponses.GetAllUserResponse;
+import yecgroup.social_app.business.responses.userResponses.GetUserForAuth;
 import yecgroup.social_app.business.responses.userResponses.GetUserResponse;
 import yecgroup.social_app.business.rules.userBusinessRules.BaseUserBusinessRules;
 import yecgroup.social_app.core.adapters.javaMailSender.userMail.UserMailSenderService;
@@ -52,6 +55,19 @@ public class UserManager implements UserService {
 
 		return userResponse; 
 	}
+	
+	
+	@Override
+	public GetUserForAuth getUserByEmail(String email) {
+
+		User target = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException());
+		
+		GetUserForAuth userAuth = modelMapperService.forResponse().map(target, GetUserForAuth.class);
+		
+		return userAuth;
+		
+	}
+	
 
 	@Override
 	public void add(AddUserRequest addUserRequest) {
@@ -107,5 +123,17 @@ public class UserManager implements UserService {
 		userRepository.updatePassword(updateUserPasswordRequest.getId(), encodedPassword);
 		
 	}
+
+	@Override
+	public void updateOnlineStatus(UpdateUserOnlineStatusRequest updateUserOnlineStatusRequest) {
+		
+		
+		userRepository.updateOnlineStatus(updateUserOnlineStatusRequest.getId(), updateUserOnlineStatusRequest.getOnlineStatusId());
+		
+	}
+
+	
+
+	
 
 }
