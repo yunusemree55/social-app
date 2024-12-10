@@ -22,7 +22,7 @@ public class GetUserResponse {
 	private String statusName;
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private LocalDateTime createdAt;
-	private String profilePhotoSrc;
+	private String src;
 	private String onlineStatusName;
 	private List<GetFollowerResponse> followers;
 	private List<GetFollowingResponse> followings;

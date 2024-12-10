@@ -6,5 +6,6 @@ public interface FollowerService {
 	
 	
 	void add(AddFollowerRequest addFollowerRequest);
+	void remove(int id);
 
 }

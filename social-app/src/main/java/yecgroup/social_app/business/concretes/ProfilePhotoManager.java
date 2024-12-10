@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import yecgroup.social_app.business.abstracts.ProfilePhotoService;
 import yecgroup.social_app.business.requests.profilePhotoRequests.AddProfilePhotoRequest;
+import yecgroup.social_app.business.requests.profilePhotoRequests.UpdateProfilePhotoRequest;
 import yecgroup.social_app.core.adapters.imageKit.ImageKitService;
 import yecgroup.social_app.core.utilities.mapper.modelMapper.ModelMapperService;
 import yecgroup.social_app.dataAccess.abstracts.ProfilePhotoRepository;
@@ -37,6 +38,24 @@ public class ProfilePhotoManager implements ProfilePhotoService {
 		}
 		
 
+	}
+
+	@Override
+	public void update(UpdateProfilePhotoRequest updateProfilePhotoRequest) throws IOException {
+		
+		String src = imageKitService.upload(updateProfilePhotoRequest.getFile());
+		
+		if(src != null) {
+			
+			
+			ProfilePhoto target = profilePhotoRepository.findById(updateProfilePhotoRequest.getId()).orElseThrow();
+			target.getPhoto().setSrc(src);
+			
+			profilePhotoRepository.save(target);
+			
+			
+		}
+		
 	}
 
 }

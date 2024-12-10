@@ -1,8 +1,8 @@
 package yecgroup.social_app;
 
+
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import yecgroup.social_app.core.exceptions.BusinessException;
 import yecgroup.social_app.core.exceptions.ProblemDetail;
 import yecgroup.social_app.core.exceptions.ValidationProblemDetail;
@@ -43,8 +42,6 @@ public class SocialAppApplication {
 		validationDetail.setMessage(ExceptionMessageConstant.validationErrorMessage);
 		
 		validationDetail.setProblems(new HashMap<String, String>());
-		
-		;
 		
 		for (FieldError fieldError : validException.getBindingResult().getFieldErrors()) {
 			

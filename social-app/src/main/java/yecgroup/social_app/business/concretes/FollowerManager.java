@@ -37,6 +37,15 @@ public class FollowerManager implements FollowerService {
 
 	}
 
+
+
+	@Override
+	public void remove(int id) {
+		
+		followerRepository.deleteById(id);
+		
+	}
+
 	
 
 	

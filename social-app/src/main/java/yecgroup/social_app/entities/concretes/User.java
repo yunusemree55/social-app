@@ -52,5 +52,8 @@ public class User extends MyEntity{
 	
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Like> likes;
 
 }
