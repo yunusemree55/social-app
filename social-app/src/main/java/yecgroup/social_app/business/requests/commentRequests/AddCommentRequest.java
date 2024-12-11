@@ -1,7 +1,6 @@
-package yecgroup.social_app.business.requests.onlineStatusRequests;
+package yecgroup.social_app.business.requests.commentRequests;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,11 @@ import yecgroup.social_app.core.utilities.ValidationConstant;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddOnlineStatusRequest {
+public class AddCommentRequest {
 
-	@NotBlank(message = ValidationConstant.notBlank)
-	private String name;
+    private int postId;
+    private int userId;
 
+    @NotBlank(message = ValidationConstant.notBlank)
+    private String content;
 }

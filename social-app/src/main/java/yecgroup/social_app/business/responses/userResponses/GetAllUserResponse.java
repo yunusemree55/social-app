@@ -17,7 +17,7 @@ public class GetAllUserResponse {
 	private String statusName;
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private LocalDateTime createdAt;
-	private String profilePhotoSrc;
+	private String src;
 	private String onlineStatusName;
 
 }

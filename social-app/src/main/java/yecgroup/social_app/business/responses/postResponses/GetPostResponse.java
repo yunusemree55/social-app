@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import yecgroup.social_app.business.responses.commentResponses.GetCommentResponse;
 import yecgroup.social_app.business.responses.likeResponses.GetAllLikeResponse;
 
 
@@ -27,5 +28,6 @@ public class GetPostResponse {
 	private LocalDateTime createdAt;
 	
 	private List<GetAllLikeResponse> likes;
+	private List<GetCommentResponse> comments;
 
 }

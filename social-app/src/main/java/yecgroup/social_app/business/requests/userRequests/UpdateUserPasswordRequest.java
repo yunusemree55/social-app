@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import yecgroup.social_app.core.utilities.UserValidationConstant;
+import yecgroup.social_app.core.utilities.ValidationConstant;
 
 @Data
 @AllArgsConstructor
@@ -15,10 +16,10 @@ public class UpdateUserPasswordRequest {
 	private int id;
 	
 	@Size(min = 5,message = UserValidationConstant.passwordMessage)
-	@NotBlank()
+	@NotBlank(message = ValidationConstant.notBlank)
 	private String password;
-	
-	@NotBlank()
+
+	@NotBlank(message = ValidationConstant.notBlank)
 	private String confirmPassword;
 
 }

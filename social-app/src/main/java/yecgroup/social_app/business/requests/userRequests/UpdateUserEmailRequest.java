@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import yecgroup.social_app.core.utilities.ProjectConstant;
 import yecgroup.social_app.core.utilities.UserValidationConstant;
+import yecgroup.social_app.core.utilities.ValidationConstant;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ public class UpdateUserEmailRequest {
 	private int id;
 	
 	@Email(regexp = ProjectConstant.emailRegex,message = UserValidationConstant.emailMessage)
-	@NotBlank()
+	@NotBlank(message = ValidationConstant.notBlank)
 	private String email;
 
 }

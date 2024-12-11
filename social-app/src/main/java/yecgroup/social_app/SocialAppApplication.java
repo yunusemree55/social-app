@@ -48,7 +48,7 @@ public class SocialAppApplication {
 			validationDetail.getProblems().put(fieldError.getField(),fieldError.getDefaultMessage());
 			
 		}
-		
+
 		return validationDetail;
 		
 	}

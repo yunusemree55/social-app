@@ -26,6 +26,12 @@ public class User extends MyEntity{
 	
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "firstName")
+	private String firstName;
+
+	@Column(name = "lastName")
+	private String lastName;
 	
 	@Column(name = "username")
 	private String username; 
@@ -55,5 +61,8 @@ public class User extends MyEntity{
 	
 	@OneToMany(mappedBy = "user")
 	private List<Like> likes;
+
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comments;
 
 }

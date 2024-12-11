@@ -30,11 +30,11 @@ public class PostManager implements PostService {
 	
 	@Override
 	public List<GetAllPostResponse> getAll() {
-		
+
 		List<GetAllPostResponse> postResponseList = postRepository.findAll().stream()
 				.map(post -> modelMapperService.forResponse().map(post, GetAllPostResponse.class))
 				.collect(Collectors.toList());
-		
+
 		return postResponseList;
 	}
 	
@@ -42,7 +42,7 @@ public class PostManager implements PostService {
 	public GetPostResponse getById(int id) {
 		
 		Post target = postRepository.findById(id).orElseThrow();
-		
+
 		GetPostResponse postResponse = modelMapperService.forResponse().map(target, GetPostResponse.class);
 		
 		return postResponse;
