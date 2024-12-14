@@ -8,5 +8,6 @@ public interface CommentService {
     GetCommentResponse getById(int id);
 
     void add(AddCommentRequest addCommentRequest);
+    void delete(int id);
 
 }

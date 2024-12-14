@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import yecgroup.social_app.core.entities.MyEntity;
 
+import java.util.List;
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -25,5 +27,8 @@ public class Comment extends MyEntity {
     @ManyToOne()
     @JoinColumn(name = "userId")
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "comment")
+    private List<CommentLike> commentLikes;
 
 }

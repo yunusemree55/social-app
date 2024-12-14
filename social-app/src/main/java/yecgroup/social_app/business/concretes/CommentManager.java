@@ -34,4 +34,11 @@ public class CommentManager implements CommentService {
         commentRepository.save(comment);
 
     }
+
+    @Override
+    public void delete(int id) {
+
+        commentRepository.deleteById(id);
+
+    }
 }
