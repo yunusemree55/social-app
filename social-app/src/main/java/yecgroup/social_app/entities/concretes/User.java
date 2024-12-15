@@ -68,4 +68,7 @@ public class User extends MyEntity{
 	@OneToMany(mappedBy = "user")
 	private List<CommentLike> commentLikes;
 
+	@OneToMany(mappedBy = "user")
+	private List<Reply> replies;
+
 }
